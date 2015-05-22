@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <defs>
+		<mask id="mask1" x="0" y="0" width="100" height="100" >
+		  <polygon fill="#FFF" points="0 0, 1010 0, 920 1080, 0 1080"/>
+		</mask>
+	</defs>
+	<polygon fill="#ffd200" points="0 0, 1010 0, 920 1080, 0 1080"/>
+	<polygon fill="#f4c900" points="580 81, 655 12, 922 276"/>
+	<polygon fill="#f4c900" points="867 869, 893 1047, 795 1035"/>
+	<polygon fill="#f4c900" points="61 689, 257 995, 15 1160"/>
+	<polygon fill="#f4c900" points="-180 -141, 1251 438, 486 1217" style="mask: url(#mask1)"/>
+</svg>

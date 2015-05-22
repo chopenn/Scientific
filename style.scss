@@ -178,6 +178,12 @@ body
             }
         }
     }
+    &.product_details_subpage
+    {
+        background:url('img/product_details_bg.svg');
+        background-size: 100% 100%;
+        background-position:0 0;
+    }
 }
 .slide:first-child
 {

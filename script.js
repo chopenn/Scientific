@@ -178,7 +178,7 @@ $(document).ready(function(){
     }
     function animateScroll(targetPosition)
     {
-        $("html, body").animate({ scrollTop: targetPosition}, 500, function(){
+        $("html, body").animate({ scrollTop: targetPosition}, 700, "easeOutCubic", function(){
             manualScrolling = true;
         });
     }

@@ -122,6 +122,10 @@ $(document).ready(function(){
         $( "#progress_bar" ).click(function() {
             $("#submenu").toggle(effect, options, duration);
         });
+
+        $( "#scroll_down, #arrow_down").click(function(){
+            animateScroll(windowHeight);
+        });
     }
     function handleDrag()
     {
@@ -131,9 +135,7 @@ $(document).ready(function(){
     {
         manualScrolling = false;
         var scrollValue = Math.round($("#progress_handle").position().top / pinStep) * windowHeight;
-        $("html, body").animate({ scrollTop: scrollValue }, 500, function(){
-            manualScrolling = true;
-        });
+        animateScroll(scrollValue);
     }
     function animateBg(containerClass)
     {
@@ -174,7 +176,12 @@ $(document).ready(function(){
             hideContent(slide_id);
           });
     }
-
+    function animateScroll(targetPosition)
+    {
+        $("html, body").animate({ scrollTop: targetPosition}, 500, function(){
+            manualScrolling = true;
+        });
+    }
     function showContent(id)
     {
         animateContent(id, 1);

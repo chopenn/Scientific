@@ -21,7 +21,7 @@ $(document).ready(function(){
     $(window).scroll(handleScroll);
     handleClick();
     handleDrag();
-    animateGenie(0, 1);
+    animateGenie(2, 1);
 
     function initVariables()
     {
@@ -40,6 +40,8 @@ $(document).ready(function(){
 
     function setObjects()
     {
+        animateScroll(0);
+
         //add progress bar items
         for(var i=0; i<slidesCount; i++)
         {
@@ -55,16 +57,19 @@ $(document).ready(function(){
                 var genie = $(this);
                 var genieHorizontalCenter = genie.offset().left + genie.width()/2;
                 var genieHorizontalStartPosition;
+                var genieHorizontalTargetPosition;
 
                 if(genieHorizontalCenter < documentWidth/2)
                 {
-                    genieHorizontalStartPosition = - genie.width();
+                    genieHorizontalStartPosition = -genie.offset().left - genie.width();
                 }
                 else
                 {
-                    genieHorizontalStartPosition = documentWidth;
+                    genieHorizontalStartPosition = genie.offset().left + genie.width();
                 }
-                geniesPositions.push(genieHorizontalStartPosition);
+                genieHorizontalTargetPosition = genie.position().left;
+                var positions = [genieHorizontalStartPosition, genieHorizontalTargetPosition];
+                geniesPositions.push(positions);
                 genie.css("left", genieHorizontalStartPosition);
             });
             $(this).find("h1, h2, p, .final_animation").each(function(){
@@ -147,43 +152,35 @@ $(document).ready(function(){
     }
     function animateGenie(slide_id, new_slide_id)
     {
-        //alert(slide_id+" "+new_slide_id);
         var current_genie = $("article:nth-of-type("+new_slide_id+") .genie");
         var previous_genie = $("article:nth-of-type("+slide_id+") .genie");
-        var currentGenieLeftTargetPosition;
-        var previousGenieLeftTargetPosition;
-        if(geniesPositions[new_slide_id - 1] < documentWidth)
-        {
-            currentGenieLeftTargetPosition = 0+"";
-        }
-        else
-        {
-            currentGenieLeftTargetPosition = (parseInt($("article:nth-of-type("+slide_id+") .center_box").css("width")) - current_genie.width());
-        }
+        var currentGenieTargetPosition;
+        var previousGenieTargetPosition;
 
-        previousGenieLeftTargetPosition = Math.abs(geniesPositions[slide_id - 1]);
+        currentGenieTargetPosition = geniesPositions[new_slide_id - 1][1];
+        previousGenieTargetPosition = geniesPositions[slide_id - 1][0];
 
-        var currentGenieAnimationDuration = 500;//Math.abs(geniesPositions[slide_id - 1]) * 3;
-        var previousGenieAnimationDuration = 500;//Math.abs(geniesPositions[new_slide_id - 1]) * 3;
+        var currentGenieAnimationDuration = Math.abs(geniesPositions[slide_id - 1][0] - geniesPositions[slide_id - 1][1]) * 3;
+        var previousGenieAnimationDuration = Math.abs(geniesPositions[new_slide_id - 1][0] - geniesPositions[new_slide_id - 1][1]) * 3;
 
         // removes animation delay effect
         deQueueContentAnimation(new_slide_id);
-        current_genie.dequeue();
+        current_genie.stop();
         //--
         current_genie.animate({
             opacity: 1,
-            left: currentGenieLeftTargetPosition
+            left: currentGenieTargetPosition
           }, previousGenieAnimationDuration, "easeInOutExpo", function(){
             showContent(new_slide_id);
           });
 
         // SAA
         deQueueContentAnimation(slide_id);
-        previous_genie.dequeue();
+        previous_genie.stop();
         //--
         previous_genie.animate({
             opacity: 0,
-            left: previousGenieLeftTargetPosition
+            left: previousGenieTargetPosition
           }, currentGenieAnimationDuration, "easeInOutExpo", function(){
             hideContent(slide_id);
           });

@@ -156,12 +156,16 @@ $(document).ready(function(){
         var previous_genie = $("article:nth-of-type("+slide_id+") .genie");
         var currentGenieTargetPosition;
         var previousGenieTargetPosition;
+        var animationDurationTreshold = 2500;
 
         currentGenieTargetPosition = geniesPositions[new_slide_id - 1][1];
         previousGenieTargetPosition = geniesPositions[slide_id - 1][0];
 
-        var currentGenieAnimationDuration = Math.abs(geniesPositions[slide_id - 1][0] - geniesPositions[slide_id - 1][1]) * 3;
-        var previousGenieAnimationDuration = Math.abs(geniesPositions[new_slide_id - 1][0] - geniesPositions[new_slide_id - 1][1]) * 3;
+        var currentGenieAnimationDuration = Math.abs(geniesPositions[slide_id - 1][0] - geniesPositions[slide_id - 1][1]) * 4;
+        var previousGenieAnimationDuration = Math.abs(geniesPositions[new_slide_id - 1][0] - geniesPositions[new_slide_id - 1][1]) * 4;
+
+        if(currentGenieAnimationDuration > animationDurationTreshold) currentGenieAnimationDuration = animationDurationTreshold;
+        if(previousGenieAnimationDuration > animationDurationTreshold) previousGenieAnimationDuration = animationDurationTreshold;
 
         // removes animation delay effect
         deQueueContentAnimation(new_slide_id);

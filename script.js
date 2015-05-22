@@ -54,17 +54,18 @@ $(document).ready(function(){
             $(this).find(".genie").each(function(){
                 var genie = $(this);
                 var genieHorizontalCenter = genie.offset().left + genie.width()/2;
-                var genieHorizontalStartPosition = - genie.offset().left - genie.width();
-                geniesPositions.push(genieHorizontalStartPosition);
+                var genieHorizontalStartPosition;
 
                 if(genieHorizontalCenter < documentWidth/2)
                 {
-                    genie.css("left", genieHorizontalStartPosition);
+                    genieHorizontalStartPosition = - genie.width();
                 }
                 else
                 {
-                    genie.css("left", documentWidth);
+                    genieHorizontalStartPosition = documentWidth;
                 }
+                geniesPositions.push(genieHorizontalStartPosition);
+                genie.css("left", genieHorizontalStartPosition);
             });
             $(this).find("h1, h2, p, .final_animation").each(function(){
                 $(this).fadeTo(0, 0);
@@ -149,10 +150,21 @@ $(document).ready(function(){
         //alert(slide_id+" "+new_slide_id);
         var current_genie = $("article:nth-of-type("+new_slide_id+") .genie");
         var previous_genie = $("article:nth-of-type("+slide_id+") .genie");
-        var currentGenieLeftTargetPosition = 0+"";
-        var previousGenieLeftTargetPosition = "-" + Math.abs(geniesPositions[slide_id - 1]);
-        var currentGenieAnimationDuration = Math.abs(geniesPositions[slide_id - 1]) * 3;
-        var previousGenieAnimationDuration = Math.abs(geniesPositions[new_slide_id - 1]) * 3;
+        var currentGenieLeftTargetPosition;
+        var previousGenieLeftTargetPosition;
+        if(geniesPositions[new_slide_id - 1] < documentWidth)
+        {
+            currentGenieLeftTargetPosition = 0+"";
+        }
+        else
+        {
+            currentGenieLeftTargetPosition = (parseInt($("article:nth-of-type("+slide_id+") .center_box").css("width")) - current_genie.width());
+        }
+
+        previousGenieLeftTargetPosition = Math.abs(geniesPositions[slide_id - 1]);
+
+        var currentGenieAnimationDuration = 500;//Math.abs(geniesPositions[slide_id - 1]) * 3;
+        var previousGenieAnimationDuration = 500;//Math.abs(geniesPositions[new_slide_id - 1]) * 3;
 
         // removes animation delay effect
         deQueueContentAnimation(new_slide_id);

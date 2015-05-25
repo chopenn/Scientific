@@ -14,6 +14,7 @@ $(document).ready(function(){
     var newSlideID;
     var manualScrolling;
     var geniesPositions;
+    var triggerWindowScroll;
 
     initVariables();
     setObjects();
@@ -36,6 +37,7 @@ $(document).ready(function(){
         newSlideID = 1;
         manualScrolling = true;
         geniesPositions = [];
+        triggerWindowScroll = true;
     }
 
     function setObjects()
@@ -80,44 +82,52 @@ $(document).ready(function(){
 
     function handleResize()
     {
-        $(".items_box").css("height", $(".items_box").width()/3);
-        height = $(window).height();
+        windowHeight = $(window).height();
+        documentWidth = $(document).width();
         documentLength = $(document).height();
-        slidesCount = Math.round(documentLength / height) - 1;
-        pinStep = height*0.7/slidesCount;
-        progressBarOffset = height*0.3/2;
+        slidesCount = Math.round(documentLength / windowHeight) - 1;
+        pinStep = windowHeight*0.7/slidesCount;
+        progressBarOffset = windowHeight*0.3/2;
         handleHeight = $("#progress_handle").height();
+        $(".items_box").css("height", $(".items_box").width()/3);
+        handleDrag();
+        triggerWindowScroll = false;
+        $(window).scrollTop(newSlideID * windowHeight);
+        triggerWindowScroll = true;
     }
 
     function handleScroll()
     {
-        scrollTop = $(window).scrollTop();
-        animateBg(".plain_subpage");
-        animateBg(".products_subpage");
-        newSlideID = Math.round(scrollTop / windowHeight);
-
-        if(slideID != newSlideID)
+        if(triggerWindowScroll)
         {
-            animateGenie(slideID+1, newSlideID+1);
+            scrollTop = $(window).scrollTop();
+            animateBg(".plain_subpage");
+            animateBg(".products_subpage");
+            newSlideID = Math.round(scrollTop / windowHeight);
 
-            var current;
-            slideID = newSlideID;
-            $("#progress_bar > ul > li").removeAttr("id","current");
-            $("#progress_bar > ul").removeAttr("id","current");
+            if(slideID != newSlideID)
+            {
+                animateGenie(slideID+1, newSlideID+1);
 
-            if(slideID == 0)
-            {
-                current = "#progress_bar > ul";
+                var current;
+                slideID = newSlideID;
+                $("#progress_bar > ul > li").removeAttr("id","current");
+                $("#progress_bar > ul").removeAttr("id","current");
+
+                if(slideID == 0)
+                {
+                    current = "#progress_bar > ul";
+                }
+                else
+                {
+                    current = "#progress_bar > ul > li:nth-child("+slideID+")";
+                }
+                $(current).attr("id","current");
+                $("#progress_handle").text(slideID+1);
             }
-            else
-            {
-                current = "#progress_bar > ul > li:nth-child("+slideID+")";
-            }
-            $(current).attr("id","current");
-            $("#progress_handle").text(slideID+1);
+            pinPosition = scrollTop + progressBarOffset + slideID*pinStep - handleHeight/2;
+            if(manualScrolling) $("#progress_handle").offset({top: pinPosition});
         }
-        pinPosition = scrollTop + progressBarOffset + slideID*pinStep - handleHeight/2;
-        if(manualScrolling) $("#progress_handle").offset({top: pinPosition});
     }
 
     function handleClick()
@@ -135,7 +145,7 @@ $(document).ready(function(){
     }
     function handleDrag()
     {
-        $("#progress_handle").draggable({axis: "y", containment: "parent", grid: [ 0, Math.round(pinStep) ], stop: onDrag });
+        $("#progress_handle").draggable({axis: "y", containment: "parent", grid: [ 0, Math.round(pinStep)/5 ], stop: onDrag });
     }
     function onDrag()
     {

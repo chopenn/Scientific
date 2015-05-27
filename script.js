@@ -74,7 +74,7 @@ $(document).ready(function(){
                 geniesPositions.push(positions);
                 genie.css("left", genieHorizontalStartPosition);
             });
-            $(this).find("h1, h2, p, img, .final_animation").each(function(){
+            $(this).find("h1, h2, h3, p, .illustration, .final_animation").each(function(){
                 $(this).fadeTo(0, 0);
             });
         });
@@ -222,7 +222,7 @@ $(document).ready(function(){
     function animateContent(id, alphaValue)
     {
         var _article = "article:nth-of-type("+id+")";
-        var animatedObject = $(_article+" h1, "+_article+" h2,"+_article+" p");
+        var animatedObject = $(_article+" h1, "+_article+" h2,"+_article+" h3,"+_article+" .illustration,"+_article+" p");
         var finalAnimation = $(_article+" .final_animation");
         animatedObject.animate({opacity: alphaValue}, 500, function(){
             finalAnimation.animate({opacity: alphaValue}, 500);
@@ -231,7 +231,7 @@ $(document).ready(function(){
     function deQueueContentAnimation(id)
     {
         var _article = "article:nth-of-type("+id+")";
-        var animatedObject = $(_article).find("h1, h2, p");
+        var animatedObject = $(_article).find("h1, h2, h3, .illustration, p");
         var finalAnimation = $(_article).find(".final_animation");
         animatedObject.each(function(){
             $(this).stop();

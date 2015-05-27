@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-
     var windowHeight;
     var documentWidth;
     var documentLength;
@@ -15,6 +13,7 @@ $(document).ready(function(){
     var manualScrolling;
     var geniesPositions;
     var triggerWindowScroll;
+    var checkIfSlideAdjustedInterval;
 
     initVariables();
     setObjects();
@@ -39,7 +38,6 @@ $(document).ready(function(){
         geniesPositions = [];
         triggerWindowScroll = true;
     }
-
     function setObjects()
     {
         animateScroll(0);
@@ -64,17 +62,19 @@ $(document).ready(function(){
                 if(genieHorizontalCenter < documentWidth/2)
                 {
                     genieHorizontalStartPosition = -genie.offset().left - genie.width();
+                    genieHorizontalTargetPosition = 0;
                 }
                 else
                 {
                     genieHorizontalStartPosition = genie.offset().left + genie.width();
+                    genieHorizontalTargetPosition = genie.position().left;
                 }
-                genieHorizontalTargetPosition = genie.position().left;
+
                 var positions = [genieHorizontalStartPosition, genieHorizontalTargetPosition];
                 geniesPositions.push(positions);
                 genie.css("left", genieHorizontalStartPosition);
             });
-            $(this).find("h1, h2, p, .final_animation").each(function(){
+            $(this).find("h1, h2, p, img, .final_animation").each(function(){
                 $(this).fadeTo(0, 0);
             });
         });
@@ -93,9 +93,16 @@ $(document).ready(function(){
         handleDrag();
         triggerWindowScroll = false;
         $(window).scrollTop(newSlideID * windowHeight);
-        triggerWindowScroll = true;
+        checkIfSlideAdjustedInterval = setInterval(checkIfSlideAdjusted, 100);
     }
-
+    function checkIfSlideAdjusted()
+    {
+        if($(window).scrollTop() == newSlideID * windowHeight)
+        {
+            clearInterval(checkIfSlideAdjustedInterval);
+            triggerWindowScroll = true;
+        }
+    }
     function handleScroll()
     {
         if(triggerWindowScroll)
@@ -187,7 +194,6 @@ $(document).ready(function(){
           }, previousGenieAnimationDuration, "easeInOutExpo", function(){
             showContent(new_slide_id);
           });
-
         // SAA
         deQueueContentAnimation(slide_id);
         previous_genie.stop();

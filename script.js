@@ -1,3 +1,37 @@
+
+$.fn.slideFadeToggle  = function(speed, easing, callback) {
+        return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
+    };
+    $.fn.animateRotate = function(angle, duration, easing, complete) {
+      return this.each(function() {
+        var $elem = $(this);
+
+        $({deg: $(this).getRotationDegrees()}).animate({deg: angle}, {
+          duration: duration,
+          easing: easing,
+          step: function(now) {
+            $elem.css({
+               transform: 'rotate(' + now + 'deg)'
+             });
+          },
+          complete: complete || $.noop
+        });
+      });
+    };
+    $.fn.getRotationDegrees = function() {
+        var matrix = this.css("-webkit-transform") ||
+        this.css("-moz-transform")    ||
+        this.css("-ms-transform")     ||
+        this.css("-o-transform")      ||
+        this.css("transform");
+        if(matrix !== 'none') {
+            var values = matrix.split('(')[1].split(')')[0].split(',');
+            var a = values[0];
+            var b = values[1];
+            var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+        } else { var angle = 0; }
+        return (angle < 0) ? angle + 360 : angle;
+    }
 $(document).ready(function(){
     var windowHeight;
     var documentWidth;
@@ -84,6 +118,7 @@ $(document).ready(function(){
                 $(this).fadeTo(0, 0);
             });
             $(".foldable_box:nth-of-type(2) ul").hide();
+            $(".foldable_box:nth-of-type(1) h2").find("span").animateRotate(180);
         });
     }
 
@@ -159,43 +194,9 @@ $(document).ready(function(){
         $(".foldable_box h2").click(function(){
             $(".foldable_box:nth-of-type(1) ul, .foldable_box:nth-of-type(2) ul").slideFadeToggle(500, "easeOutCubic");
             var currentRotation = $(this).find("span").getRotationDegrees();
-            $(this).find("span").animateRotate(Math.abs(currentRotation - 180));
+            $(this).parent().parent().find("span").animateRotate(Math.abs(currentRotation - 180));
         });
     }
-    $.fn.slideFadeToggle  = function(speed, easing, callback) {
-        return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
-    };
-    $.fn.animateRotate = function(angle, duration, easing, complete) {
-      return this.each(function() {
-        var $elem = $(this);
-
-        $({deg: $(this).getRotationDegrees()}).animate({deg: angle}, {
-          duration: duration,
-          easing: easing,
-          step: function(now) {
-            $elem.css({
-               transform: 'rotate(' + now + 'deg)'
-             });
-          },
-          complete: complete || $.noop
-        });
-      });
-    };
-    $.fn.getRotationDegrees = function() {
-        var matrix = this.css("-webkit-transform") ||
-        this.css("-moz-transform")    ||
-        this.css("-ms-transform")     ||
-        this.css("-o-transform")      ||
-        this.css("transform");
-        if(matrix !== 'none') {
-            var values = matrix.split('(')[1].split(')')[0].split(',');
-            var a = values[0];
-            var b = values[1];
-            var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-        } else { var angle = 0; }
-        return (angle < 0) ? angle + 360 : angle;
-    }
-
     function handleDrag()
     {
         $("#progress_handle").draggable({axis: "y", containment: "parent", grid: [ 0, Math.round(pinStep)/5 ], stop: onDrag });

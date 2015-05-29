@@ -532,23 +532,41 @@ article
                             color:#b2e1e3;
                             font-size:2.5vh;
                             border-bottom: 2px solid;
+                            cursor: pointer;
+                        }
+                        h2 span
+                        {
+                            position: absolute;
+                            text-indent: 999px;
+                            overflow:hidden;
+                            width: 3vh;
+                            height: 1.2vh;
+                            z-index: -1;
+                            right:18.5vh;
+                            margin-top:1.5vh;
+                            background:url("img/arrow_down_light_blue.svg");
+                            background-size: 3vh 1.2vh;
+                            background-repeat: no-repeat;
+                            background-position: 100% 100%;
                         }
                         ul
                         {
+                            counter-reset: myCounter;
                             margin:0;
                             padding:0;
+                            margin-left:5vh;
+
 
                             li
                             {
-                                list-style-type:disc;
-                                list-style-position:outside;
-
                                 h3
                                 {
                                     color:#004164;
                                     font-family:"keep_calm_medregular";
                                     font-weight: bold;
                                     font-size:2vh;
+                                    line-height:5vh;
+                                    height:5vh;
                                 }
                                 p
                                 {
@@ -556,7 +574,26 @@ article
                                     font-size:2vh;
                                     font-family:"espacio_novo_mediumregular";
                                     font-weight: bold;
+                                    margin-top:-1vh;
                                 }
+                            }
+                            li:before
+                            {
+                                counter-increment: myCounter;
+                                content:counter(myCounter);
+                                width:4vh;
+                                height:4vh;
+                                margin:0.5vh;
+                                float:left;
+                                background:#004164;
+                                margin-left:-5vh;
+                                line-height:4vh;
+                                text-align:center;
+                                font-family:"keep_calm_medregular";
+                                font-weight: bold;
+                                font-size:1.5vh;
+                                color:#FFF;
+                                border-radius: 2.5vh;
                             }
                         }
                         /*

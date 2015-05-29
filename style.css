@@ -440,30 +440,63 @@ article {
             padding: 0;
             color: #b2e1e3;
             font-size: 2.5vh;
-            border-bottom: 2px solid; }
-          /* line 536, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+            border-bottom: 2px solid;
+            cursor: pointer; }
+          /* line 537, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+          article.product_details_page .content_box .column.right .foldable_box h2 span {
+            position: absolute;
+            text-indent: 999px;
+            overflow: hidden;
+            width: 3vh;
+            height: 1.2vh;
+            z-index: -1;
+            right: 18.5vh;
+            margin-top: 1.5vh;
+            background: url("img/arrow_down_light_blue.svg");
+            background-size: 3vh 1.2vh;
+            background-repeat: no-repeat;
+            background-position: 100% 100%; }
+          /* line 552, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
           article.product_details_page .content_box .column.right .foldable_box ul {
+            counter-reset: myCounter;
             margin: 0;
-            padding: 0; }
-            /* line 541, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
-            article.product_details_page .content_box .column.right .foldable_box ul li {
-              list-style-type: disc;
-              list-style-position: outside; }
-              /* line 546, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
-              article.product_details_page .content_box .column.right .foldable_box ul li h3 {
-                color: #004164;
-                font-family: "keep_calm_medregular";
-                font-weight: bold;
-                font-size: 2vh; }
-              /* line 553, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
-              article.product_details_page .content_box .column.right .foldable_box ul li p {
-                color: #b2e1e3;
-                font-size: 2vh;
-                font-family: "espacio_novo_mediumregular";
-                font-weight: bold; }
+            padding: 0;
+            margin-left: 5vh; }
+            /* line 562, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+            article.product_details_page .content_box .column.right .foldable_box ul li h3 {
+              color: #004164;
+              font-family: "keep_calm_medregular";
+              font-weight: bold;
+              font-size: 2vh;
+              line-height: 5vh;
+              height: 5vh; }
+            /* line 571, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+            article.product_details_page .content_box .column.right .foldable_box ul li p {
+              color: #b2e1e3;
+              font-size: 2vh;
+              font-family: "espacio_novo_mediumregular";
+              font-weight: bold;
+              margin-top: -1vh; }
+            /* line 580, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+            article.product_details_page .content_box .column.right .foldable_box ul li:before {
+              counter-increment: myCounter;
+              content: counter(myCounter);
+              width: 4vh;
+              height: 4vh;
+              margin: 0.5vh;
+              float: left;
+              background: #004164;
+              margin-left: -5vh;
+              line-height: 4vh;
+              text-align: center;
+              font-family: "keep_calm_medregular";
+              font-weight: bold;
+              font-size: 1.5vh;
+              color: #FFF;
+              border-radius: 2.5vh; }
 
 @media all and (max-aspect-ratio: 148/100) {
-  /* line 589, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 626, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   #top_image {
     width: auto;
     height: 60vh;
@@ -471,10 +504,10 @@ article {
     left: 50%; } }
 
 @media all and (orientation: landscape) and (min-aspect-ratio: 148/100) {
-  /* line 599, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 636, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   #top_image {
     width: 100%; }
-  /* line 605, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 642, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   .subpage_content .genie {
     width: auto;
     height: 100%;
@@ -482,33 +515,33 @@ article {
     left: 0;
     z-index: 1;
     padding-bottom: -300px; }
-  /* line 614, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 651, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   .subpage_content .column {
     overflow: visible; }
-    /* line 618, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 655, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .subpage_content .column.left {
       width: calc(42% - 70vh/3);
       margin-left: 24.5vh; }
-      /* line 623, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+      /* line 660, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
       .subpage_content .column.left h1 {
         padding-left: 9%;
         margin-left: -9%; }
-    /* line 629, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 666, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .subpage_content .column.right {
       width: 40%;
       margin-left: 24.5vh; }
-      /* line 634, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+      /* line 671, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
       .subpage_content .column.right h1 {
         width: inherit;
         min-width: 10px;
         background-image: none;
         background-color: #f4c900; }
-      /* line 641, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+      /* line 678, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
       .subpage_content .column.right h2, .subpage_content .column.right p {
         color: #004164; } }
 
 @media all and (orientation: landscape) {
-  /* line 653, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 690, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   #progress_bar {
     width: 2px;
     height: 70vh;
@@ -519,7 +552,7 @@ article {
     right: 10vh;
     z-index: 999;
     cursor: pointer; }
-    /* line 665, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 702, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar ul {
       width: 20px;
       height: 100%;
@@ -531,10 +564,10 @@ article {
       background: url("img/progress_pin_empty.svg") no-repeat;
       background-size: 20px 20px;
       background-position: 0 0; }
-    /* line 678, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 715, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar ul#current {
       background-image: url("img/progress_pin_active.svg"); }
-    /* line 682, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 719, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar li {
       width: 20px;
       height: 20px;
@@ -543,18 +576,18 @@ article {
       background-size: 20px 20px;
       background-position: 0 100%;
       margin-bottom: -10px; }
-    /* line 693, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 730, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar li#current {
       background: url("img/progress_pin_active.svg") no-repeat;
       background-size: 20px 20px;
       background-position: 0 100%; }
-    /* line 699, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 736, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #progress_handle_track {
       width: 0px;
       height: calc(100% + 20px);
       position: absolute;
       overflow: visible; }
-    /* line 706, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 743, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar span#progress_handle {
       width: 40px;
       height: 40px;
@@ -568,20 +601,20 @@ article {
       position: absolute;
       margin-left: 10px;
       margin-top: -20px; }
-    /* line 725, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 762, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu {
       width: 10vw;
       height: 70vh;
       position: absolute;
       right: calc(20px); }
-    /* line 732, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 769, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul {
       width: 100%;
       margin: 0;
       padding: 0;
       background: none;
       display: flex; }
-    /* line 740, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 777, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul li {
       width: auto;
       float: left;
@@ -593,7 +626,7 @@ article {
       display: flex;
       align-items: center;
       overflow: hidden; }
-    /* line 753, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 790, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul li a {
       width: 90%;
       margin: 0;
@@ -607,37 +640,37 @@ article {
       color: #FFF;
       font-size: calc(0.8vw + 0.8vh);
       line-height: calc(0.9vw + 0.9vh); }
-    /* line 768, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 805, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul li a:first-line {
       font-family: "keep_calm_medregular"; }
-    /* line 772, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 809, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul li:nth-child(even) a {
       background-color: #a6001a; }
-    /* line 776, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 813, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     #progress_bar #submenu ul li:nth-child(odd) a {
       background-color: #b4001c; } }
 
 @media all and (orientation: portrait) {
-  /* line 784, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 821, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   .start_screen_content {
     width: 70%; } }
 
 @media all and (orientation: portrait) and (min-aspect-ratio: 10/15) {
-  /* line 791, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 828, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   .start_screen_content {
     width: calc(100% - 20vh);
     padding: 0;
     margin: 0;
     height: 80vh;
     margin: 10vh; }
-    /* line 802, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 839, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content .genie {
       float: left;
       position: relative;
       display: block;
       width: auto;
       height: 80%; }
-    /* line 810, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 847, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content .speech_bubble {
       width: calc((100% - 0.31 * 0.8 * 80vh)*0.88);
       padding: 0 0 0 calc((100% - 0.31 * 0.8 * 80vh)*0.12);
@@ -647,18 +680,18 @@ article {
       background: url('img/speech_bubble_1.svg');
       background-size: 100% 100%;
       line-height: 10vh; }
-    /* line 821, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 858, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content h1 {
       font-family: "espacio_novo_mediumregular";
       text-align: center;
       color: #FFF;
       font-size: 4vw; }
-    /* line 828, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 865, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content h1 .bold {
       font-weight: bold;
       font-family: "keep_calm_medregular";
       font-size: 3.52vw; }
-    /* line 834, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 871, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content p {
       width: calc(100% - 0.31 * 0.8 * 80vh);
       color: #323232;
@@ -669,12 +702,12 @@ article {
       float: right;
       word-spacing: 100%;
       font-weight: bold; }
-    /* line 846, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 883, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content p .bold {
       font-weight: bold;
       font-family: "keep_calm_medregular";
       font-size: 7.04vw; }
-    /* line 852, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 889, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #scroll_down {
       position: absolute;
       width: 100%;
@@ -687,12 +720,12 @@ article {
       color: #b2e1e3;
       font-size: 3vw;
       bottom: 20vh; }
-    /* line 866, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 903, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #scroll_down .bold {
       font-family: "keep_calm_medregular";
       color: #FFF;
       font-size: 2.64vw; }
-    /* line 872, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 909, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #arrow_down {
       width: 30%;
       height: 8vw;
@@ -706,11 +739,11 @@ article {
       bottom: 0; } }
 
 @media all and (orientation: portrait) and (max-aspect-ratio: 10/15) {
-  /* line 889, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+  /* line 926, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
   .start_screen_content {
     height: calc(100vh - 30vw);
     margin-top: 15vw; }
-    /* line 895, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 932, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content .genie {
       float: left;
       position: relative;
@@ -718,7 +751,7 @@ article {
       width: 50%;
       height: auto;
       margin-top: calc(0.1*(100vh - 30vw) + 20px); }
-    /* line 904, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 941, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content .speech_bubble {
       position: absolute;
       width: 100%;
@@ -728,18 +761,18 @@ article {
       background-size: 100% 100%;
       margin: 0;
       line-height: 8.57vh; }
-    /* line 915, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 952, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content h1 {
       font-family: "espacio_novo_mediumregular";
       text-align: center;
       color: #FFF;
       font-size: 5vw; }
-    /* line 922, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 959, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content h1 .bold {
       font-weight: bold;
       font-family: "keep_calm_medregular";
       font-size: 4.4vw; }
-    /* line 928, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 965, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content p {
       width: 50%;
       color: #323232;
@@ -751,12 +784,12 @@ article {
       word-spacing: 60%;
       font-weight: bold;
       overflow: hidden; }
-    /* line 941, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 978, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content p .bold {
       font-weight: bold;
       font-family: "keep_calm_medregular";
       font-size: 7vw; }
-    /* line 947, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 984, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #scroll_down {
       width: 100%;
       height: 10vh;
@@ -768,12 +801,12 @@ article {
       color: #b2e1e3;
       line-height: 10vh;
       margin-top: 65vh; }
-    /* line 960, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 997, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #scroll_down .bold {
       font-size: 3vw;
       font-family: "keep_calm_medregular";
       color: #FFF; }
-    /* line 966, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
+    /* line 1003, E:/Projekty/Scientific Industries/Presentation/Slicing/style.scss */
     .start_screen_content #arrow_down {
       position: absolute;
       width: 50%;

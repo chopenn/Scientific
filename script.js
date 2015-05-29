@@ -77,6 +77,13 @@ $(document).ready(function(){
             $(this).find("h1, h2, h3, p, .illustration, .final_animation").each(function(){
                 $(this).fadeTo(0, 0);
             });
+            $(this).find("li").prev().each(function(){
+                $(this).fadeTo(0, 0);
+            });
+            $(this).find("li").next().each(function(){
+                $(this).fadeTo(0, 0);
+            });
+            $(".foldable_box:nth-of-type(2) ul").hide();
         });
     }
 
@@ -142,14 +149,53 @@ $(document).ready(function(){
         var effect = "slide";
         var options = { direction: "right" };
         var duration = 500;
-        $( "#progress_bar" ).click(function() {
+        $("#progress_bar").click(function() {
             $("#submenu").toggle(effect, options, duration);
         });
 
-        $( "#scroll_down, #arrow_down").click(function(){
+        $("#scroll_down, #arrow_down").click(function(){
             animateScroll(windowHeight);
         });
+        $(".foldable_box h2").click(function(){
+            $(".foldable_box:nth-of-type(1) ul, .foldable_box:nth-of-type(2) ul").slideFadeToggle(500, "easeOutCubic");
+            var currentRotation = $(this).find("span").getRotationDegrees();
+            $(this).find("span").animateRotate(Math.abs(currentRotation - 180));
+        });
     }
+    $.fn.slideFadeToggle  = function(speed, easing, callback) {
+        return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
+    };
+    $.fn.animateRotate = function(angle, duration, easing, complete) {
+      return this.each(function() {
+        var $elem = $(this);
+
+        $({deg: $(this).getRotationDegrees()}).animate({deg: angle}, {
+          duration: duration,
+          easing: easing,
+          step: function(now) {
+            $elem.css({
+               transform: 'rotate(' + now + 'deg)'
+             });
+          },
+          complete: complete || $.noop
+        });
+      });
+    };
+    $.fn.getRotationDegrees = function() {
+        var matrix = this.css("-webkit-transform") ||
+        this.css("-moz-transform")    ||
+        this.css("-ms-transform")     ||
+        this.css("-o-transform")      ||
+        this.css("transform");
+        if(matrix !== 'none') {
+            var values = matrix.split('(')[1].split(')')[0].split(',');
+            var a = values[0];
+            var b = values[1];
+            var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+        } else { var angle = 0; }
+        return (angle < 0) ? angle + 360 : angle;
+    }
+
     function handleDrag()
     {
         $("#progress_handle").draggable({axis: "y", containment: "parent", grid: [ 0, Math.round(pinStep)/5 ], stop: onDrag });
@@ -213,20 +259,26 @@ $(document).ready(function(){
     }
     function showContent(id)
     {
-        animateContent(id, 1);
+        animateContent(id, 1, 500);
     }
     function hideContent(id)
     {
-        animateContent(id, 0);
+        animateContent(id, 0, 500);
     }
-    function animateContent(id, alphaValue)
+    function animateContent(id, alphaValue, duration)
     {
         var _article = "article:nth-of-type("+id+")";
         var animatedObject = $(_article+" h1, "+_article+" h2,"+_article+" h3,"+_article+" .illustration,"+_article+" p");
+        var animatedBefore = $(_article+" li").prev();
+        var animatedNext = $(_article+" li").next();
         var finalAnimation = $(_article+" .final_animation");
-        animatedObject.animate({opacity: alphaValue}, 500, function(){
-            finalAnimation.animate({opacity: alphaValue}, 500);
+        animatedObject.animate({opacity: alphaValue}, duration, function(){
+            finalAnimation.animate({opacity: alphaValue}, duration);
         });
+
+        //animate punctuation:
+        animatedBefore.animate({opacity: alphaValue}, duration);
+        animatedNext.animate({opacity: alphaValue}, duration);
     }
     function deQueueContentAnimation(id)
     {

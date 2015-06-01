@@ -56,6 +56,11 @@ $(document).ready(function(){
     handleClick();
     handleDrag();
     animateGenie(2, 1);
+    $(document).on("scroll", function(){
+        $(document).on("scrollStop", function(){
+             alert("Stopped scrolling!");
+        });
+    });
 
     function initVariables()
     {
@@ -150,8 +155,8 @@ $(document).ready(function(){
         if(triggerWindowScroll)
         {
             scrollTop = $(window).scrollTop();
-            animateBg(".plain_subpage");
-            animateBg(".products_subpage");
+            animateBg(".plain_page");
+            animateBg(".products_page");
             newSlideID = Math.round(scrollTop / windowHeight);
 
             if(slideID != newSlideID)
@@ -191,10 +196,13 @@ $(document).ready(function(){
         $("#scroll_down, #arrow_down").click(function(){
             animateScroll(windowHeight);
         });
+
         $(".foldable_box h2").click(function(){
             $(".foldable_box:nth-of-type(1) ul, .foldable_box:nth-of-type(2) ul").slideFadeToggle(500, "easeOutCubic");
-            var currentRotation = $(this).find("span").getRotationDegrees();
-            $(this).parent().parent().find("span").animateRotate(Math.abs(currentRotation - 180));
+            $(".foldable_box").each(function(){
+                var currentRotation = $(this).find("span").getRotationDegrees();
+                $(this).find("span").animateRotate(Math.abs(currentRotation - 180));
+            });
         });
     }
     function handleDrag()
@@ -212,7 +220,6 @@ $(document).ready(function(){
         $(containerClass).each(function(){
             $(this).css("background-position", "0 "+(($(this).position().top - scrollTop)/10 - 0.2 * windowHeight) +"px");
         });
-
     }
     function animateGenie(slide_id, new_slide_id)
     {

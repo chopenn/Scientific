@@ -48,19 +48,16 @@ $(document).ready(function(){
     var geniesPositions;
     var triggerWindowScroll;
     var checkIfSlideAdjustedInterval;
+    var wheelScrollValue;
 
     initVariables();
     setObjects();
     $(window).resize(handleResize);
     $(window).scroll(handleScroll);
+    handleSlideSnapping();
     handleClick();
     handleDrag();
     animateGenie(2, 1);
-    $(document).on("scroll", function(){
-        $(document).on("scrollStop", function(){
-             alert("Stopped scrolling!");
-        });
-    });
 
     function initVariables()
     {
@@ -150,38 +147,79 @@ $(document).ready(function(){
             triggerWindowScroll = true;
         }
     }
+    function handleSlideSnapping()
+    {
+         $("html, body").bind('DOMMouseScroll', function(e){
+             var _scrollValue = e.originalEvent.detail * -1;
+             if(triggerWindowScroll)
+             {
+                triggerWindowScroll = false;
+                setTimeout(function(){
+                    triggerWindowScroll = true;
+                }, 250);
+                if(_scrollValue < 0) {
+                     newSlideID++;
+                     animateScroll(windowHeight * newSlideID);
+                 }else if(_scrollValue > 0){
+                     newSlideID--;
+                     animateScroll(windowHeight * newSlideID);
+                 }
+             }
+
+             //prevent page fom scrolling
+             return false;
+         });
+
+         //IE, Opera, Safari
+         $(window).bind('mousewheel', function(e){
+             if(triggerWindowScroll)
+             {
+                triggerWindowScroll = false;
+                setTimeout(function(){
+                    triggerWindowScroll = true;
+                }, 250);
+                if(e.originalEvent.wheelDelta < 0 && newSlideID < slidesCount) {
+                     newSlideID++;
+                     animateScroll(windowHeight * newSlideID);
+                 }else if(e.originalEvent.wheelDelta > 0 && newSlideID > 0){
+                     newSlideID--;
+                     animateScroll(windowHeight * newSlideID);
+                 }
+             }
+
+             //prevent page fom scrolling
+             return false;
+         });
+    }
     function handleScroll()
     {
-        if(triggerWindowScroll)
+        scrollTop = $(window).scrollTop();
+        animateBg(".plain_page");
+        animateBg(".products_page");
+        newSlideID = Math.round(scrollTop / windowHeight);
+
+        if(slideID != newSlideID)
         {
-            scrollTop = $(window).scrollTop();
-            animateBg(".plain_page");
-            animateBg(".products_page");
-            newSlideID = Math.round(scrollTop / windowHeight);
+            animateGenie(slideID+1, newSlideID+1);
 
-            if(slideID != newSlideID)
+            var current;
+            slideID = newSlideID;
+            $("#progress_bar > ul > li").removeAttr("id","current");
+            $("#progress_bar > ul").removeAttr("id","current");
+
+            if(slideID == 0)
             {
-                animateGenie(slideID+1, newSlideID+1);
-
-                var current;
-                slideID = newSlideID;
-                $("#progress_bar > ul > li").removeAttr("id","current");
-                $("#progress_bar > ul").removeAttr("id","current");
-
-                if(slideID == 0)
-                {
-                    current = "#progress_bar > ul";
-                }
-                else
-                {
-                    current = "#progress_bar > ul > li:nth-child("+slideID+")";
-                }
-                $(current).attr("id","current");
-                $("#progress_handle").text(slideID+1);
+                current = "#progress_bar > ul";
             }
-            pinPosition = scrollTop + progressBarOffset + slideID*pinStep - handleHeight/2;
-            if(manualScrolling) $("#progress_handle").offset({top: pinPosition});
+            else
+            {
+                current = "#progress_bar > ul > li:nth-child("+slideID+")";
+            }
+            $(current).attr("id","current");
+            $("#progress_handle").text(slideID+1);
         }
+        pinPosition = scrollTop + progressBarOffset + slideID*pinStep - handleHeight/2;
+        if(manualScrolling) $("#progress_handle").offset({top: pinPosition});
     }
 
     function handleClick()
@@ -218,7 +256,8 @@ $(document).ready(function(){
     function animateBg(containerClass)
     {
         $(containerClass).each(function(){
-            $(this).css("background-position", "0 "+(($(this).position().top - scrollTop)/10 - 0.2 * windowHeight) +"px");
+            //$(this).css("background-position", "0 "+(($(this).position().top + scrollTop)/5 - 0.2 * windowHeight  - 1/7 * windowHeight * $(this).index()) +"px");
+            $(this).css("background-position", "0 "+(($(this).index()*windowHeight - $(window).scrollTop())/5 + windowHeight)+"px");
         });
     }
     function animateGenie(slide_id, new_slide_id)

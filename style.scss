@@ -191,13 +191,14 @@ article
                     line-height:0.15 * $width;
                     text-decoration:none;
                     color:#b2e1e3;
-                    font-size: $height*0.35;
+                    font-size: $height*0.37;
                     margin-top:5vh;
                 }
                 #scroll_down .bold
                 {
                     font-family:"keep_calm_medregular";
                     color:#FFF;
+                    font-size: $height*0.32;
                 }
                 #arrow_down
                 {
@@ -861,12 +862,13 @@ article
             text-align:center;
             color:#FFF;
             font-size:4vw;
-        }
-        h1 .bold
-        {
-            font-weight:bold;
-            font-family:"keep_calm_medregular";
-            font-size:3.52vw;
+
+            h1 .bold
+            {
+                font-weight:bold;
+                font-family:"keep_calm_medregular";
+                font-size:3.52vw;
+            }
         }
         p
         {

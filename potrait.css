@@ -1,0 +1,180 @@
+/*------------------------------Start Page*/
+article.start_page
+{
+
+}
+
+article.start_page .content_box
+{
+    width: 60vw;
+    padding: 10vw;
+    margin: 5vh 10vw 10vw 10vw;
+/*    background-color: brown;*/
+}
+ article.start_page .content_box .genie
+{
+    position: absolute;
+    height: 80vw;
+    min-height: 50vw;
+    top: calc( 15vw + 15vh );
+    margin-left: 20vw;
+    z-index: 0;
+}
+article.start_page .content_box .content
+{
+
+}
+article.start_page .content_box .content h1
+{
+    position: relative;
+    width: 100%;
+    top: 0vh;
+    font-size: 4.5vw;
+    line-height: 9vh;
+    max-height: 11vh;
+    min-height: 7vh;
+    padding: 0 0 0 0;
+    background:url('img/speech_bubble_2.svg');
+}
+article.start_page .content_box .content h1 .bold
+{
+    font-size: 4.5vw;
+}
+
+article.start_page .content_box .content p
+{
+    font-size: 7vw;
+    line-height: 6vw;
+    width: 30vw;
+    margin-top: 50vw;
+    text-align: right;
+}
+article.start_page .content_box .content p .bold
+{
+    font-size: 7vw;
+    line-height: 4vw;
+    position: relative;
+    top:-2vw;
+    float: right;
+}
+article.start_page .content_box .content #scroll_down
+{
+    position: relative;
+    width: 100%;
+    margin-top: -0vh;
+    z-index: 1;
+    font-size: 3.5vw;
+}
+article.start_page .content_box .content #scroll_down .bold
+{
+    top: 0vh;
+    font-size: 3.5vw;
+}
+article.start_page .content_box .content  #arrow_down
+{
+    margin-top: 5vw;
+    margin-left: calc(100% - 40vw);
+    width: 20vw;
+    height: 5vw;
+}
+/*-------------------------------------------------------------------------------------*/
+/* ---------------------------------subpage--------------------------------------------*/
+article.plain_page
+{
+        background:url('img/subpage_bg_1_mobile.svg');
+        background-size: 100% 140%;
+        background-position:0 0;
+
+}
+article.subpage .content_box
+{
+    width: calc(100% - 20vw);
+    height: calc(100% - 20vh );
+    padding: 0;
+    margin: 10vh 10vw 10vh 10vw;
+}
+
+article.plain_page .content_box .genie
+{
+    height: 50%;
+}
+
+article.plain_page .content_box .column.left
+{
+    width: 100%;
+    height: calc(100% / 2);
+    margin: 0;
+    overflow: hidden;
+}
+article.plain_page .content_box .column.left p
+{
+    color: #FFF;
+}
+article.plain_page .content_box .column.left h2
+{
+    margin-left: 0vh;
+    margin-top: 12vh;
+    margin-bottom: 2vh;
+    color: #FFF;
+    font-size: 2.5vh;
+
+}
+
+article.plain_page .content_box .column.right
+{
+    width: 100%;
+    margin: 0;
+    height: calc(100% / 2);
+    position: relative;
+    overflow: hidden;
+}
+article.plain_page .content_box .column.right h1
+{
+    background: none;
+    color:#f4c900;
+    text-align: left;
+
+}
+article.plain_page .content_box .column.right h2
+{
+    width: calc(100% - 10vw);
+    margin-left: 10vh;
+    font-size: 2.5vh;
+}
+article.plain_page .content_box .column.right p
+{
+    margin-left: 10vh;
+}
+
+article.plain_page .content_box h1
+{
+    width: 70%;
+    float: right;
+    font-size: 2.5vh;
+
+}
+article.plain_page .content_box p
+{
+    font-size: 2.0vh;
+    color: black;
+
+}
+/*----------------------------------------------------------------------------------------------*/
+/*------------------------------Products Page--------------------------------------------------*/
+article.products_page
+{
+        background:url('img/subpage_bg_2_mobile.svg');
+        background-size: 100% 140%;
+        background-position:0 0;
+}
+article.products_page .content_box
+{
+
+}
+article.products_page .content_box h1
+{
+
+}
+
+
+/*------------------------------------------------------------------------------------------------*/
